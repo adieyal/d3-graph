@@ -15,6 +15,7 @@ HorizontalBarGraph = function(ctx){
     this.bar.max  = this.bar.max  || 0;
     this.bar.background = this.bar.background === undefined ? true : this.bar.background;
     this.bar.text = this.bar.text === undefined ? true : this.bar.text;
+    this.bar.textspacing = this.bar.textspacing === undefined ? "0.5em" : this.bar.textspacing
 
     this.legend = ctx.legend || {};
     this.legend.enabled = this.legend.enabled === undefined ? true : this.legend.enabled;
@@ -29,6 +30,7 @@ HorizontalBarGraph = function(ctx){
         };
     }
 
+    this.datafmt = ctx.datafmt || String;
 
     if (ctx.data !== undefined && ctx.data !== null){
         if (ctx.data.length > 0 && ctx.data[0].values !== undefined){
@@ -147,13 +149,13 @@ HorizontalBarGraph.prototype = {
             rects.enter().append('text')
                 .attr('x', function(d, i){ return d.value / me.bar.max * me.bar.width + me.bar.start; })
                 .attr('text-anchor', 'start')
-                .attr('dx', '0.5em')
-                .attr('y', function(d, i){ return (y(i) + y(i + 1)) / 2; })
+                .attr('dx', this.bar.textspacing)
+                .attr('y', function(d, i){ return (y(i) + y(i + 1)) / 2 + 1;})
                 .attr('height', this.bar.height)
                 .attr('font-size', '8px')
                 .attr('class', function(d, i) { return 'hb-rect hb-rect-text-value hg-group-' + i; })
                 .style('fill', function(d, i) { return me.colors(d, i); })
-                .text(function(d, i) { return d.value; });
+                .text(function(d, i) { return me.datafmt(d.value); });
         }
 
         if (this.legend.enabled){
