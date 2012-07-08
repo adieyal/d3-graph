@@ -126,7 +126,7 @@ ArcGraph.prototype = {
         // Add a line under the text
         var description_font = parseInt(description_header_font * 0.5, 10);
         graph.enter().append('text')
-                .attr('x', this.r * 1.45 + description_header_font * 2 )
+                .attr('x', this.r * 1.55 + description_header_font * 2)
                 .attr('y', function(d, i){  return me.descriptionLocation(i) - description_header_font / 3; } )
                 .style("fill", this.key.text_color )
                 .style('font-size',  description_font + 'px')
