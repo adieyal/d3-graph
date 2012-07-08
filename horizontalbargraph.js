@@ -30,7 +30,7 @@ HorizontalBarGraph = function(ctx){
         };
     }
 
-    this.datafmt = ctx.datafmt || String;
+    this.datafmt = ctx.datafmt || function(v) { return v; };
 
     if (ctx.data !== undefined && ctx.data !== null){
         if (ctx.data.length > 0 && ctx.data[0].values !== undefined){

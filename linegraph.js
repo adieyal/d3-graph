@@ -69,9 +69,6 @@ LineGraph.prototype = {
         if (this.line.max > 0){
             this.max = this.line.max;
         }
-        console.log(this.max);
-        console.log(this.keys);
-        console.log(this.graph_data);
 
 
         this.line.start = this.y_axis === true ? this.w * 0.15 : 0;
